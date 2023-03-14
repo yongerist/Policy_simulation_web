@@ -1,0 +1,64 @@
+from django.contrib.auth.models import UserManager
+from django.db import models
+from django.db import models
+
+
+# Create your models here.
+# 专门对数据库进行操作
+
+# class UserInfo(models.Model):
+#     name = models.CharField(max_length=32)
+#     password = models.CharField(max_length=64)
+#     age = models.IntegerField()
+#     # objects = UserManager()
+
+
+# settings.DATABASES is improperly configured. Please supply the ENGINE value. Check settings documentation for more
+# details.
+
+
+class Department(models.Model):
+    """ 部门表 """
+    title = models.CharField(max_length=32, verbose_name='标题')
+
+    def __str__(self):
+        return self.title
+
+
+class UserInfo(models.Model):
+    """员工表"""
+    name = models.CharField(max_length=16, verbose_name='姓名')
+    password = models.CharField(max_length=64, verbose_name='密码')
+    age = models.IntegerField(verbose_name='年龄')
+    account = models.DecimalField(verbose_name='账户余额', max_digits=10, decimal_places=2, default=0)
+    create_time = models.DateField(verbose_name='入职时间', null=True, blank=True)
+    depart = models.ForeignKey(to='Department', to_field="id", on_delete=models.CASCADE, verbose_name="部门", null=True,
+                               blank=True)
+    gender_choices = (
+        (1, "男"),
+        (0, "女"),
+    )
+    gender = models.SmallIntegerField(verbose_name='性别', choices=gender_choices, null=True, blank=True)
+
+
+class Target(models.Model):
+    """ 指标表 """
+    target = models.CharField(max_length=32, verbose_name='指标')
+
+    def __str__(self):
+        return self.target
+
+
+class Algorithm(models.Model):
+    """ 指标表 """
+    algorithm = models.CharField(max_length=32, verbose_name='算法')
+
+    def __str__(self):
+        return self.algorithm
+
+
+class Simulation(models.Model):
+    """政策模拟表"""
+    target = models.ForeignKey(to='Target', to_field='id', on_delete=models.CASCADE)
+    algorithm = models.ForeignKey(to='Algorithm', to_field='id', on_delete=models.CASCADE)
+    data = models.IntegerField(verbose_name='数据')

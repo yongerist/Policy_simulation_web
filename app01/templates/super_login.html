@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+    <style>
+        .account {
+            border: 5px solid #2aabd2;
+            width: 500px;
+            height: 350px;
+            margin: 100px auto 0;
+            padding: 20px 40px;
+            border-radius: 20px;
+            /*box-shadow:阴影*/
+            box-shadow: 10px 10px 5px #c1c1c1;
+        }
+
+        .account h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="account">
+    <h2>管理员登录</h2>
+    <form action="/superUse">
+        <div class="form-group">
+            <label for="exampleInputEmail1">用户名</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">密码</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
+        </div>
+        <button type="submit" class="btn btn-info"> 登 录</button>
+    </form>
+</div>
+</body>
+</html>

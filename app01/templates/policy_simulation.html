@@ -1,0 +1,137 @@
+{% load static %}
+{#/app01/static/plugins/bootstrap-3.4.1/css/bootstrap.css#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>政策模拟</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+<nav class="navbar navbar-default" style="box-shadow: 0 3px 3px #c1c1c1;">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">政策模拟平台</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/main">首页</a></li>
+                <li><a href="/main/goods_list">政策列表</a></li>
+                <li class="active"><a href="/main/policy_simulation">政策模拟<span class="sr-only">(current)</span></a>
+                </li>
+                <!--                <li><a href="#">政策列表</a></li>-->
+                <li><a href="#">开通会员</a></li>
+                <li><a href="#">联系我们</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">类型 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">工业</a></li>
+                        <li><a href="#">农业</a></li>
+                        <li><a href="#">畜牧业</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">全部</a></li>
+                        <!--                        <li role="separator" class="divider"></li>-->
+                        <!--                        <li><a href="#">One more separated link</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                {#                <button type="submit" class="btn btn-default">#}
+                {#                    <i class="fa fa-search" aria-hidden="true"></i>#}
+                {#                </button>#}
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">设置</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">我的 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">账号管理</a></li>
+                        <li><a href="#">我的会员</a></li>
+                        <li><a href="#">收藏夹</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">注销账号</a></li>
+                        <li><a href="#">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container-fluid clearfix">
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">选择指标</label>
+            <div class="col-sm-10">
+
+                <select class="form-control" name="target">
+                    {% for obj in target_queryset %}
+                        <option value="{{ obj.id }}">{{ obj.target }}</option>
+                    {% endfor %}
+                </select>
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">选择算法</label>
+            <div class="col-sm-10">
+
+                <select class="form-control" name="algorithm">
+                    {% for obj in algorithm_queryset %}
+                        <option value="{{ obj.id }}">{{ obj.algorithm }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">选择文件</label>
+            <div class="col-sm-10">
+                <input type="file">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">输入数据</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="data" id="inputEmail3" placeholder="数据">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">预测</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

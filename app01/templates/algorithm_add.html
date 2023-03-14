@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}             {#引入模板#}
+
+{% block content %}
+    <div class="container">
+                <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">新增算法</h3>
+          </div>
+          <div class="panel-body">
+              <form method="post" >
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label >算法名</label>
+                    <input type="text" class="form-control" placeholder="算法名" name="algorithm">
+                  </div>
+                  <button type="submit" class="btn btn-success">保 存</button>
+              </form>
+          </div>
+        </div>
+    </div>
+{% endblock %}

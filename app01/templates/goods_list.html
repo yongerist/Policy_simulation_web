@@ -1,0 +1,146 @@
+{#用户界面的算法列表#}
+
+
+{% load static %}
+{#/app01/static/plugins/bootstrap-3.4.1/css/bootstrap.css#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default" style="box-shadow: 0 3px 3px #c1c1c1;">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">政策模拟平台</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/main">首页</a></li>
+                <li class="active"><a href="/main/goods_list">政策列表<span class="sr-only">(current)</span></a></li>
+<!--                <li><a href="#">政策列表</a></li>-->
+                <li><a href="/main/policy_simulation">政策模拟</a></li>
+                <li><a href="#">开通会员</a></li>
+                <li><a href="#">联系我们</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">类型 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">工业</a></li>
+                        <li><a href="#">农业</a></li>
+                        <li><a href="#">畜牧业</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">全部</a></li>
+                        <!--                        <li role="separator" class="divider"></li>-->
+                        <!--                        <li><a href="#">One more separated link</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+{#                <button type="submit" class="btn btn-default">#}
+{#                    <i class="fa fa-search" aria-hidden="true"></i>#}
+{#                </button>#}
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">设置</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">我的 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">账号管理</a></li>
+                        <li><a href="#">我的会员</a></li>
+                        <li><a href="#">收藏夹</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">注销账号</a></li>
+                        <li><a href="#">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid clearfix">
+    <div class="col-sm-9">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="{% static 'img/SuanFa_LiZiQun.png' %}" alt=""
+                         style="height:64px;width:64px;">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">粒子群算法</h4>
+                粒子群算法，也称粒子群优化算法或鸟群觅食算法（Particle Swarm Optimization），缩写为 PSO， 是由J. Kennedy和R. C.
+                Eberhart等开发的一种新的进化算法(Evolutionary Algorithm - EA)。PSO 算法属于进化算法的一种，
+                和模拟退火算法相似，它也是从随机解出发，通过迭代寻找最优解，它也是通过适应度来评价解的品质，但它比遗传算法规则更为简单， 它没有遗传算法的“交叉”(Crossover) 和“变异”(Mutation)
+                操作，它通过追随当前搜索到的最优值来寻找全局最优。 这种算法以其实现容易、精度高、收敛快等优点引起了学术界的重视，并且在解决实际问题中展示了其优越性。粒子群算法是一种并行算法。
+            <a href="#">更多</a>
+            </div>
+
+        </div>
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="{% static 'img/SuanFa_YiQun.png'  %}" alt="" style="height:64px;width:64px;">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">蚁群算法</h4>
+                蚁群算法是一种智能优化算法，在TSP商旅问题上得到广泛使用。蚁群算法于1992年由Marco
+                Dorigo首次提出，该算法来源于蚂蚁觅食行为。由于蚂蚁没有视力，所以在寻找食物源时，会在其经过的路径上释放一种信息素，并能够感知其它蚂蚁释放的信息素。信息素浓度的大小表征路径的远近，信息素浓度越高，表示对应的路径距离越短。通常，蚂蚁会以较大的概率优先选择信息素浓度高的路径，并且释放一定的信息素，使该条路径上的信息素浓度增高，进而使蚂蚁能够找到一条由巢穴到食物源最近的路径。但是，随着时间的推移，路径上的信息素浓度会逐渐衰减。
+                粒子群算法，也称粒子群优化算法或鸟群觅食算法（Particle Swarm Optimization），缩写为 PSO， 是由J. Kennedy和R. C.
+                Eberhart等开发的一种新的进化算法(Evolutionary Algorithm - EA)。PSO 算法属于进化算法的一种，
+                和模拟退火算法相似，它也是从随机解出发，通过迭代寻找最优解，它也是通过适应度来评价解的品质，但它比遗传算法规则更为简单， 它没有遗传算法的“交叉”(Crossover) 和“变异”(Mutation)
+                操作，它通过追随当前搜索到的最优值来寻找全局最优。 这种算法以其实现容易、精度高、收敛快等优点引起了学术界的重视，并且在解决实际问题中展示了其优越性。粒子群算法是一种并行算法。
+            <a href="#">更多</a>
+            </div>
+        </div>
+
+
+        <ul class="pagination">
+            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        </ul>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">最火政策推荐</div>
+            <div class="panel-body">
+                粒子群算法
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">最新政策推荐</div>
+            <div class="panel-body">
+                蚁群算法
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
