@@ -23,6 +23,7 @@ urlpatterns = [
     path('main/', views.main),
     path('main/goods_list', views.goods_list),
     path('main/policy_simulation', views.policy_simulation),
+    path('main/simu_history', views.simu_history),
     path('register/', views.register),
     path('super/login', views.super_login),
     # path('super/use', views.super_use),

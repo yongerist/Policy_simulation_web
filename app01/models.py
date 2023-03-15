@@ -3,20 +3,6 @@ from django.db import models
 from django.db import models
 
 
-# Create your models here.
-# 专门对数据库进行操作
-
-# class UserInfo(models.Model):
-#     name = models.CharField(max_length=32)
-#     password = models.CharField(max_length=64)
-#     age = models.IntegerField()
-#     # objects = UserManager()
-
-
-# settings.DATABASES is improperly configured. Please supply the ENGINE value. Check settings documentation for more
-# details.
-
-
 class Department(models.Model):
     """ 部门表 """
     title = models.CharField(max_length=32, verbose_name='标题')
@@ -62,3 +48,4 @@ class Simulation(models.Model):
     target = models.ForeignKey(to='Target', to_field='id', on_delete=models.CASCADE)
     algorithm = models.ForeignKey(to='Algorithm', to_field='id', on_delete=models.CASCADE)
     data = models.IntegerField(verbose_name='数据')
+    outcome = models.IntegerField(verbose_name='模拟结果', null=True, blank=True)

@@ -33,8 +33,11 @@ def policy_simulation(request):
     target = request.POST.get("target")
     algorithm = request.POST.get("algorithm")
     data = request.POST.get("data")
-    models.Simulation.objects.create(target_id=target, algorithm_id=algorithm, data=data, )
-    return redirect("/main/policy_simulation")
+    outcome = int(data) * 2
+    models.Simulation.objects.create(target_id=target, algorithm_id=algorithm, data=data, outcome=outcome)
+
+    # return redirect("/main/policy_simulation")
+    return redirect("/main/simu_history")
 
 
 def algorithm_list(request):
@@ -163,3 +166,9 @@ def user_delete(request, nid):
     """删除用户"""
     models.UserInfo.objects.filter(id=nid).delete()
     return redirect('/user/list/')
+
+
+def simu_history(request):
+    """展示模拟历史"""
+    queryset = models.Simulation.objects.all()
+    return render(request, 'simu_history.html', {'queryset': queryset})
