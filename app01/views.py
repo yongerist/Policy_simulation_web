@@ -150,13 +150,16 @@ def user_model_form_add(request):
 
 def user_edit(request, nid):
     """编辑用户"""
-    if request.method == "GET":
-        row_obj = models.UserInfo.objects.filter(id=nid).first()
-        form = UserModelForm(instance=row_obj)  # 在编辑页面开始先显示原始数据
-        return render(request, "user_edit.html", {'form': form})
+
+    # 根据nid获取要编辑的那一行的数据
     row_obj = models.UserInfo.objects.filter(id=nid).first()
-    form = UserModelForm(data=request.POST, instance=row_obj)
+    if request.method == "GET":
+        # 在编辑页面开始先显示原始数据
+        form = UserModelForm(instance=row_obj)
+        return render(request, "user_edit.html", {'form': form})
+    form = UserModelForm(data=request.POST, instance=row_obj)  # instance指向你要更新的对象
     if form.is_valid():
+        # 如果想保存用户输入以外的一些值,可以用 'form.instance.字段名 = 值'
         form.save()
         return redirect('/user/list')
     return render(request, 'user_edit.html', {'form': form})
@@ -172,3 +175,6 @@ def simu_history(request):
     """展示模拟历史"""
     queryset = models.Simulation.objects.all()
     return render(request, 'simu_history.html', {'queryset': queryset})
+
+
+
