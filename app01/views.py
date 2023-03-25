@@ -126,7 +126,7 @@ class UserModelForm(forms.ModelForm):
     class Meta:
         model = models.UserInfo
         fields = ["name", "password", "age", "account", "create_time", "depart", "gender"]
-
+    # widgets = {"create-time": forms.TextInput("type":"date")}
     """让样式变为form-control"""
 
     def __init__(self, *args, **kwargs):
@@ -177,4 +177,82 @@ def simu_history(request):
     return render(request, 'simu_history.html', {'queryset': queryset})
 
 
+def pretty_list(request):
+    """靓号列表"""
+    data_dict = {}
+    search_data = request.GET.get('q', "")
+    if search_data:
+        data_dict["mobile__contains"] = search_data
+    res = models.PrettyNum.objects.filter(**data_dict)
+    print(res)
 
+    # 按级别排序获取, '-'表示从高到低
+    queryset = models.PrettyNum.objects.filter(**data_dict).order_by('-level')
+    return render(request, "pretty_list.html", {'queryset': queryset, "search_data": search_data})
+
+
+# 检验输入数据
+from django.core.validators import RegexValidator
+
+
+class PrettyModelForm(forms.ModelForm):
+    # 验证方式一
+    mobile = forms.CharField(
+        label="手机号",
+        validators=[RegexValidator(r'^1\d{10}$', "手机号格式错误")],
+    )
+
+    class Meta:
+        model = models.PrettyNum
+        # fields = "__all__" 选择数据库所有的元素
+        fields = ["mobile", "price", "level", "status"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs = {"class": "form-control", "placeholder": field.label}
+
+
+def pretty_add(request):
+    """添加靓号"""
+    if request.method == 'GET':
+        form = PrettyModelForm()
+        return render(request, 'pretty_add.html', {"form": form})
+    form = PrettyModelForm(data=request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('/pretty/list/')
+    return render(request, 'pretty_add.html', {"form": form})
+
+
+class PrettyEditModelForm(forms.ModelForm):
+    mobile = forms.CharField(disabled=True, label="手机号")
+
+    class Meta:
+        model = models.PrettyNum
+        # fields = "__all__" 选择数据库所有的元素
+        fields = ["mobile", "price", "level", "status"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs = {"class": "form-control", "placeholder": field.label}
+
+
+def pretty_edit(request, nid):
+    """编辑靓号"""
+    row_object = models.PrettyNum.objects.filter(id=nid).first()
+
+    if request.method == "GET":
+        form = PrettyEditModelForm(instance=row_object)
+        return render(request, "pretty_edit.html", {"form": form})
+    form = PrettyEditModelForm(data=request.POST, instance=row_object)
+    if form.is_valid():
+        form.save()
+        return redirect('/pretty/list/')
+    return render(request, "pretty_edit.html", {"form": form})
+
+
+def pretty_delete(request, nid):
+    models.PrettyNum.objects.filter(id=nid).delete()
+    return redirect('/pretty/list/')

@@ -19,7 +19,7 @@ from django.urls import path
 from app01 import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('main/', views.main),
     path('main/goods_list', views.goods_list),
     path('main/policy_simulation', views.policy_simulation),
@@ -54,5 +54,10 @@ urlpatterns = [
     path('target/add/', views.target_add),
     path('target/delete/', views.target_delete),
     path('target/<int:nid>/edit/', views.target_edit),
+
+    path('pretty/list/', views.pretty_list),
+    path('pretty/add/', views.pretty_add),
+    path('pretty/<int:nid>/edit/', views.pretty_edit),
+    path('pretty/<int:nid>/delete/', views.pretty_delete),
 
 ]
