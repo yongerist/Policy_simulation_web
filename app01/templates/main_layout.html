@@ -6,6 +6,7 @@
     <title>政策模拟</title>
     <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    {% block css %}{% endblock %}
 </head>
 
 <body>
@@ -81,6 +82,6 @@
 
 <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
-
+{% block js %}{% endblock %}
 </body>
 </html>
