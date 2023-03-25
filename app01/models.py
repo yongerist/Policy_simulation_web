@@ -48,4 +48,5 @@ class Simulation(models.Model):
     target = models.ForeignKey(to='Target', to_field='id', on_delete=models.CASCADE)
     algorithm = models.ForeignKey(to='Algorithm', to_field='id', on_delete=models.CASCADE)
     data = models.IntegerField(verbose_name='数据')
+    time = models.DateField(verbose_name='时间参数', null=True, blank=True)
     outcome = models.IntegerField(verbose_name='模拟结果', null=True, blank=True)

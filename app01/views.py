@@ -32,9 +32,10 @@ def policy_simulation(request):
                       {'target_queryset': target_queryset, 'algorithm_queryset': algorithm_queryset})
     target = request.POST.get("target")
     algorithm = request.POST.get("algorithm")
+    time = request.POST.get("time")
     data = request.POST.get("data")
     outcome = int(data) * 2
-    models.Simulation.objects.create(target_id=target, algorithm_id=algorithm, data=data, outcome=outcome)
+    models.Simulation.objects.create(target_id=target, algorithm_id=algorithm, data=data, outcome=outcome, time=time)
 
     # return redirect("/main/policy_simulation")
     return redirect("/main/simu_history")
