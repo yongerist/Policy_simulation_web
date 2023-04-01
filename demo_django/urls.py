@@ -17,15 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app01 import views
-
+from app01.views import main, algorithm, simulation, target, user
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('main/', views.main),
-    path('main/goods_list', views.goods_list),
-    path('main/policy_simulation', views.policy_simulation),
-    path('main/simu_history', views.simu_history),
-    path('register/', views.register),
-    path('super/login', views.super_login),
+    path('main/', main.main),
+    path('main/goods_list', main.goods_list),
+    path('main/policy_simulation', simulation.policy_simulation),
+    path('main/simu_history', simulation.simu_history),
+    path('register/', main.register),
+    path('super/login', main.super_login),
     # path('super/use', views.super_use),
 
 
@@ -39,20 +39,20 @@ urlpatterns = [
     # path('info/delete/', views.info_delete)
 
 
-    path('depart/list/', views.algorithm_list),
-    path('depart/add/', views.algorithm_add),
-    path('depart/delete/', views.algorithm_delete),
-    path('depart/<int:nid>/edit/', views.algorithm_edit),
+    path('depart/list/', algorithm.algorithm_list),
+    path('depart/add/', algorithm.algorithm_add),
+    path('depart/delete/', algorithm.algorithm_delete),
+    path('depart/<int:nid>/edit/', algorithm.algorithm_edit),
 
-    path('user/list/', views.user_list),
+    path('user/list/', user.user_list),
     # path('user/add/', views.user_add),
-    path('user/model/form/add/', views.user_model_form_add),
-    path('user/<int:nid>/edit/', views.user_edit),
-    path('user/<int:nid>/delete/', views.user_delete),
+    path('user/model/form/add/', user.user_model_form_add),
+    path('user/<int:nid>/edit/', user.user_edit),
+    path('user/<int:nid>/delete/', user.user_delete),
 
-    path('target/list/', views.target_list),
-    path('target/add/', views.target_add),
-    path('target/delete/', views.target_delete),
-    path('target/<int:nid>/edit/', views.target_edit),
+    path('target/list/', target.target_list),
+    path('target/add/', target.target_add),
+    path('target/delete/', target.target_delete),
+    path('target/<int:nid>/edit/', target.target_edit),
 
 ]

@@ -50,3 +50,6 @@ class Simulation(models.Model):
     data = models.IntegerField(verbose_name='数据')
     time = models.DateField(verbose_name='时间参数', null=True, blank=True)
     outcome = models.IntegerField(verbose_name='模拟结果', null=True, blank=True)
+
+
+
